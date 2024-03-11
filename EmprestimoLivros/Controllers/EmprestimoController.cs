@@ -16,8 +16,8 @@ namespace EmprestimoLivros.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<EmprestimosModel> emprestimos = _db.Emprestimos; //aqui fomos no banco de dados e pegamos todos os registros
-            return View(emprestimos); // Nessa linha,  ele vai até o view/emprestimo/index e entra na verificação e dps no foreach
+            IEnumerable<EmprestimosModel> emprestimos = _db.Emprestimos; 
+            return View(emprestimos); 
         }
 
         public IActionResult Cadastrar()
@@ -34,10 +34,7 @@ namespace EmprestimoLivros.Controllers
             }
 
             EmprestimosModel emprestimo = _db.Emprestimos.FirstOrDefault(x => x.Id == id);
-            // acima nos entramos no emprestimomodel( que é aonde declaramos cada campo do banco de dados)
-            // após o sinal de igual fomos no banco de dados e pegamos o primeiro registro(FirstOrDefault)
-            // e o x é a mesma coisa que um where(where id = id). Basicamente ta fazendo uma comparação
-            //resumindo, a expressão toda é um select no banco
+
             if (emprestimo == null) 
             {
                 return NotFound();
@@ -64,12 +61,12 @@ namespace EmprestimoLivros.Controllers
             return View(emprestimo);
         }
 
-        [HttpPost] // aqui salva as informações no banco/tela
+        [HttpPost] 
         public IActionResult Cadastrar(EmprestimosModel emprestimos)
         {
             if(ModelState.IsValid)
             { 
-                _db.Emprestimos.Add(emprestimos); //_db entrando no banco de dados ... Emprestimos entrando na tabela ... add to adicionando 
+                _db.Emprestimos.Add(emprestimos);
                 _db.SaveChanges();
 
                 TempData["MensagemSucesso"] = "Castro Realizado com Sucesso";
