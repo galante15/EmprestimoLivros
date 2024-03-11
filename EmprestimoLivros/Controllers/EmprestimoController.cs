@@ -48,6 +48,7 @@ namespace EmprestimoLivros.Controllers
         {
             if (id == null || id == 0)
             {
+
                 return NotFound();
             }
 
